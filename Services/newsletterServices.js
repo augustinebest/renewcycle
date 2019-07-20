@@ -8,10 +8,10 @@ exports.subscribe = (req, res, payload) => {
         else {
             newsletterRepository.add(payload, (err, output) => {
                 if(err) return res.json({message: 'error ocurred in adding this email', code: 17});
-                // mailer.sendInfo(payload, (err2, info) => {
-                    // if(err2) return res.json({message: err2, code: 21});
+                mailer.sendInfo(payload, (err2, info) => {
+                    if(err2) return res.json({message: err2, code: 21});
                     return res.json({message: 'Email added successfully', code: 200});
-                // })
+                })
             })
         }
     })
