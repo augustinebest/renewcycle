@@ -57,7 +57,6 @@ app.use(function(req, res, next) {
     res.locals.error = req.flash('error');
     next();
 })
-app.get('*', (req, res) => res.send('Error 404'))
 // Routing
 app.use('/', navigation);
 app.use('/s', subscribe);
