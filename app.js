@@ -26,7 +26,10 @@ app.set('views', path.join(__dirname, 'views'))
 
 //Connecting to the local database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/renewcykle', { useNewUrlParser: true }); 
+// mongoose.connect('mongodb://localhost:27017/renewcykle', { useNewUrlParser: true }); 
+
+// Connection to mlab
+mongoose.connect('mongodb://renewcycle:renewcycle1@ds151997.mlab.com:51997/renewcycle', { useNewUrlParser: true })
 
 //Middleware
 app.use(morgan('dev'));
