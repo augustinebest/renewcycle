@@ -1,0 +1,62 @@
+html, body {
+    margin: 0; padding: 0;
+    display: grid;
+    justify-content: center; 
+    background-color:  #edf1f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.login_frame {
+    position: relative; top: 160px;
+    /* border: 1px solid #f00; */
+    width: 250px;
+    height: 270px; padding-top: 25px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5)
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    top: 30px; padding-top: 25px;
+}
+
+input {
+    width: 90%; margin-top: 6px;
+    height: 24px;
+    border-top: none;
+    padding: 5px;
+    border-bottom: dashed 1px #000;
+    border-right: none;
+    border-left: none;
+}
+#password {
+    margin-top: 12px;
+}
+button {
+    margin-top: 10px; cursor: pointer;
+    padding: 1px 14px;
+}
+
+.alert_error {
+    color: rgb(151, 8, 8);
+    width: 90%; margin-top: 10px;
+    margin-left: 12px;
+    text-align: center; 
+    padding: 4px;
+    background-color: rgb(235, 151, 151);
+}
+
+.alert_success {
+    color: rgb(6, 88, 6);
+    width: 90%; margin-top: 10px;
+    margin-left: 12px;
+    text-align: center; 
+    padding: 4px;
+    background-color: rgb(173, 241, 173);
+}
