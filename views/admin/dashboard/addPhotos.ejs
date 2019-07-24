@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="dashboard_frame">
+        <% include ./partials/navbar %>
+        <div class="row_dash">
+                <% include ./partials/sidebar %>
+            <div class="main_dash_content">
+                <div class="dash_photo">
+                    <div class="dash_photo_left">
+                        <div class="display_img">
+                            <img src="" id="dash_img"/>
+                        </div>
+                    </div>
+                    <div class="dash_photo_right">
+                            <form enctype="multipart/form-data">
+                                <% include ../../includes/messages %>
+                                <input type="text" placeholder="Enter Instagram URL..." id="instagramLink"/>
+                                <input onchange="readURL(this)" id="dash_file" type="file" class="file">
+                                <button id="select_image">Select an image</button>
+                                <button type="submit" id="submit_photo">Upload details</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='/js/jquery-min.js'></script>
+    <script src='/js/dashboard.js'></script>
+    <script>
+            var url;
+            var check = false;
+            $('#select_image').click(function(e) {
+                e.preventDefault();
+                $('#dash_file').click();
+            })
+
+            function readURL(input) {
+                url = input.files;
+                let ext = url[0].name.substring(url[0].name.lastIndexOf('.') +1).toLowerCase();
+                if(url && url[0] && (ext=='png' || ext=='jpeg' || ext=='jpg')) {
+                    check = true
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#dash_img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(url[0]);
+                } else {
+                    $('#dash_img').attr('src', '/img/not.jpg');
+                }
+            }
+            $('#submit_photo').click(function(e) {
+                e.preventDefault();
+                if(check == true) {
+                    const instagramLink = $('#instagramLink').val();
+                    const fd = new FormData();
+                    fd.append('instagramLink', instagramLink);
+                    fd.append('photo', url[0])
+                    fetch(`/admin/gallery/add`, {
+                        method: 'POST',
+                        'Accept': 'application/json',
+                        'Content-Type': 'multipart/form-data',
+                        body: fd
+                    }).then(res => res.json())
+                    .then(data => console.log(data))
+                    .catch(err => console.log(err));
+                } else {
+                    $('#dash_img').attr('src', '/img/not.jpg');
+                }
+            })
+    </script>
+</body>
+</html>

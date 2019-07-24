@@ -62,7 +62,6 @@ exports.dashboard = (req, res) => {
 }
 
 exports.addPhotos = async (req, res) => {
-    // console.log(req.file);
     const payload = {
         photo: req.file.path,
         instagramLink: req.body.instagramLink

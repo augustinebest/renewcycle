@@ -1,3 +1,117 @@
-html, body {
-    /* background-color: #f00; */
+html, body, ul {
+    margin: 0; padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.dashboard_frame {
+    width: 80%;
+    height: 600px;
+    border: 1px solid #000;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.nav_dashboard {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+}
+
+.row_dash {
+    display: flex;
+}
+
+.dash_navigations {
+    border-right: 1px solid #000;
+    width: 20%;
+    height: 550px;
+}
+.main_dash_content {
+    /* border: 1px solid #00f; */
+    width: 80%;
+    height: 550px;
+}
+
+.ul_dash {
+    list-style: none;
+    margin-top: 30px;
+}
+.ul_dash li {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    margin-top: 5px; 
+}
+.ul_dash li a {
+    text-decoration: none;
+    height: 100%;
+    cursor: pointer;
+    padding: 5px;
+    transition: 0.8s; color: #000;
+}
+.ul_dash li:hover {
+    text-decoration: underline;
+    background-color: #eee;
+}
+
+/* Add Photo Starts */
+.dash_photo {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f00;
+    display: flex;
+}
+.dash_photo_left {
+    margin-top: 20px;
+    width: 45%;
+    height: 300px;
+    border: 1px solid #00f;
+    /* display: flex; */
+}
+.dash_photo_right {
+    margin-top: 20px;
+    width: 55%;
+    height: 200px;
+    border: 1px solid #0f0;
+    display: flex;
+}
+.dash_photo_right form {
+    margin: auto; padding: 10px;
+    width: 250px; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.dash_photo_right form input {
+    width: 100%;
+}
+.dash_photo_right form button {
+    width: 100%;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.display_img {
+    width: 280px;
+    height: 260px;
+    border: 1px solid #f00;
+    margin: auto;
+    /* margin-top: 20px; */
+}
+#dash_img {
+    width: 100%; height: 100%;
+}
+.file {
+    display: none;
+}
+/* Add photo ends */
+@media (max-width: 540px) {
+    .dashboard_frame {
+        width: 90%;
+    }
 }
