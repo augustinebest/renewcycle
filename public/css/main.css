@@ -7,11 +7,15 @@
     color: #fff;
     margin-bottom: 10px;
 }
-.short_desc {
+.short_desc1 {
+    font-size: 20px;
+}
+.short_desc2 {
     padding: 5px 10px;
     background: #126e3d;
     color: #fff;
     border-radius: 5px;
+    font-size: 20px;
 }
 /* Slideshow Ends */
 
