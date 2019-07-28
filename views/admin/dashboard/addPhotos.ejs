@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
-    <title>Login</title>
+    <title>Add Photo | Dashboard</title>
 </head>
 <body>
     <div class="dashboard_frame">
         <% include ./partials/navbar %>
         <div class="row_dash">
+            <!-- <div class="sidebar-dashboard">  -->
                 <% include ./partials/sidebar %>
+            <!-- </div> -->
             <div class="main_dash_content">
                 <div class="dash_photo">
                     <div class="dash_photo_left">
@@ -20,7 +22,8 @@
                         </div>
                     </div>
                     <div class="dash_photo_right">
-                            <form enctype="multipart/form-data">
+                        <form enctype="multipart/form-data">
+                            <div class="dash_alert">hfhdhdh</div>
                                 <% include ../../includes/messages %>
                                 <input type="text" placeholder="Enter Instagram URL..." id="instagramLink"/>
                                 <input onchange="readURL(this)" id="dash_file" type="file" class="file">
@@ -69,7 +72,16 @@
                         'Content-Type': 'multipart/form-data',
                         body: fd
                     }).then(res => res.json())
-                    .then(data => console.log(data))
+                    .then(data => {
+                        console.log(data)
+                        if(data.code == 200) {
+                            $('.dash_alert').css({display: 'block', backgroundColor: 'rgb(206, 241, 206)', color: 'rgb(3, 48, 3)'});
+                            $('.dash_alert').html(data.message);
+                        } else {
+                            $('.dash_alert').css({display: 'block'});
+                            $('.dash_alert').html(data.message);
+                        }
+                    })
                     .catch(err => console.log(err));
                 } else {
                     $('#dash_img').attr('src', '/img/not.jpg');

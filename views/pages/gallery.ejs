@@ -26,16 +26,25 @@
     <link href="./css/style2.css" rel="stylesheet">  
     <link href="/css/main.css" rel="stylesheet">  
     <link href="/css/footer.css" rel="stylesheet"> 
+    <link href="/css/dashboard.css" rel="stylesheet"> 
       <!-- Template Styling Ends -->
 </head>
 <body>
     <% include ../includes/header %>
     <!-- About page -->
-    <div class="about_section wow fadeInUp">
+    <div class="gallery_section wow fadeInUp">
       <h1 class="about_font">GALLERY</h1>
     </div>
-    <% include ../includes/footer %>
+    <div class="loading_gallery"></div>
+    <div id="user_gallery">
+      <div id="user_gallery_display">
 
+      </div>
+      <div class="user_load_more"><button class="user_gallery_button">Load more</button></div>
+      <div class="endgallery"></div>
+    </div>
+    <% include ../includes/footer %>
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         <!-- Templates JS Starts -->
       <!-- JavaScript Libraries -->
         <script src="lib/jquery/jquery.min.js"></script>
@@ -52,10 +61,84 @@
         <script src="lib/lightbox/js/lightbox.min.js"></script>
         <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
         <!-- Contact Form JavaScript File -->
-        <script src="contactform/contactform.js"></script>
+        <!-- <script src="contactform/contactform.js"></script> -->
 
         <!-- Template Main Javascript File -->
         <script src="js/main2.js"></script>
+        <script src='js/jquery-min.js'></script>
     <!-- Templates Styling Ends -->
+    <script>
+      var photos;
+      var displayPhoto = [];
+      var x;
+      var index = 0;
+      var size = 4;
+      var increment = 3;
+      const mainDiv = document.getElementById('user_gallery_display');
+      window.onload = function() {
+        var loading = true;
+        loading = true;
+        fetch('/admin/gallery/allphotos', {
+                method: 'GET',
+                'Accept': 'application/json'
+            }).then(res => res.json())
+            .then(data => {
+              photos = data.message;
+              x = displayPhoto.concat(data.message.slice(index, size))
+              if(data.code == 200) {
+                loading = false;
+                if(loading == false) {
+                  $('.loading_gallery').html('')
+                  $('.loading_gallery').css({display: 'none'});
+                }
+                // console.log(loading)
+                for(let i=0; i<x.length; i++) {
+                    const a = document.createElement('a');
+                    const div = document.createElement('div');
+                    div.id = 'user_gallery_single_image';
+                    a.id = '_target_link';
+                    a.appendChild(div);
+                    a.setAttribute('href', x[i].instagramLink);
+                    a.setAttribute('target', '_blank');
+                    div.style.backgroundImage = `url(${ x[i].photo})`;
+                    mainDiv.appendChild(a);
+                }
+                $('.user_load_more').css({display: 'block'});
+              } else {
+                loading = false;
+                if(loading == false) {
+                  $('.loading_gallery').html('No gallery available now')
+                  // $('.loading_gallery').css({display: 'none'});
+                }
+              }
+            })
+            .catch(err => console.log(err));
+                  if(loading == true) {
+                    $('.loading_gallery').html('Loading gallery...')
+                  } 
+      }
+      $('.user_gallery_button').click(function() {
+        index=size;
+        size=index+increment
+        var cut = photos.slice(index, size);
+        x = x.concat(cut)
+        if(cut.length > 0) {
+          for(let i=0; i<cut.length; i++) {
+            const a = document.createElement('a');
+            const div = document.createElement('div');
+            div.id = 'user_gallery_single_image';
+                a.id = '_target_link';
+                a.appendChild(div);
+                a.setAttribute('href', cut[i].instagramLink);
+                a.setAttribute('target', '_blank');
+                div.style.backgroundImage = `url(${ cut[i].photo})`;
+                mainDiv.appendChild(a);
+            }
+        } else {
+          $('.endgallery').css({display: 'block'});
+          $('.endgallery').html('Oops! The end of the gallery');
+        }
+      })
+    </script>
 </body>
 </html>

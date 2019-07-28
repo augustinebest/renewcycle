@@ -12,9 +12,6 @@ $(document).ready(function() {
             let button = document.getElementById('news_button');
             button.innerHTML = 'LOADING...';
             button.style.outline = 'none';
-            // button.style.cursor = 'not-allowed';
-            // button.style.backgroundColor ='#f00';
-            // button.style.color = '#fff';
             e.preventDefault();
             let payload = {
                 name: input_name,

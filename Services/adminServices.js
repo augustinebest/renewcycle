@@ -49,3 +49,23 @@ exports.addPhotos = (req, res, data) => {
         }
     })
 }
+
+exports.getAllPhotos = (req, res) => {
+    galleryRepository.getAllPhotos({}, (err, result) => {
+        if(err) res.json({message: 'Error ocurred in getting all photos', code: 13});
+        if(!result) {
+            return res.json({message: 'There is no photo currently available', code: 14})
+        }
+        return res.json({message: result, code: 200});
+    })
+}
+
+exports.loadmore = (req, res) => {
+    galleryRepository.loadmore({}, (err, result) => {
+        if(err) res.json({message: 'Error ocurred in getting all photos', code: 13});
+        if(!result) {
+            return res.json({message: 'There is no photo currently available', code: 14})
+        }
+        return res.json({message: result, code: 200});
+    })
+}

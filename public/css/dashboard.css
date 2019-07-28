@@ -63,35 +63,107 @@ html, body, ul {
     background-color: #eee;
 }
 
+/* User Dashboard gallery Starts */
+#user_gallery {
+    position: relative;
+    width: 100%; padding: 15px;
+    /* border: 1px solid #f00; */
+    height: auto;
+}
+#user_gallery_display {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* height: 100%; */
+    /* border: 1px solid #00f; */
+    flex-wrap: wrap;
+}
+#user_gallery_single_image {
+    width: 340px;
+    height: 380px;
+    /* margin: 10px; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0;
+}
+.user_load_more {
+    text-align: center;
+    padding: 8px;
+    display: none;
+}
+.user_load_more button {
+    cursor: pointer;
+    border: 1px solid rgb(2, 37, 2);
+    outline: none;
+    color: #fff;
+    background-color: rgb(2, 37, 2);
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.user_load_more button:hover {
+     background-color: #d47739;
+ }
+#user_photo_image {
+    width: 100%; height: 100%;
+}
+.user_gallery_button {
+    z-index: 900;
+}
+#_target_link {
+    width: 340px;
+    height: 380px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+}
+.endgallery {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+    background-color: rgb(233, 166, 166);
+    color: rgb(68, 9, 9);
+    padding: 3px;
+}
+.loading_gallery {
+    /* display: none; */
+    text-align: center;
+    font-size: 20px;
+    color: rgb(2, 37, 2);
+}
+/* User Dashboard gallery Ends */
+
 /* Add Photo Starts */
 .dash_photo {
     width: 100%;
     height: 100%;
-    border: 1px solid #f00;
+    /* border: 1px solid #f00; */
     display: flex;
 }
 .dash_photo_left {
-    margin-top: 20px;
+    padding-top: 20px;
     width: 45%;
-    height: 300px;
-    border: 1px solid #00f;
+    height: 99%;
+    /* border: 1px solid #00f; */
+    background-color: #eee;
     /* display: flex; */
 }
 .dash_photo_right {
     margin-top: 20px;
     width: 55%;
     height: 200px;
-    border: 1px solid #0f0;
+    /* border: 1px solid #0f0; */
     display: flex;
 }
 .dash_photo_right form {
     margin: auto; padding: 10px;
-    width: 250px; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    width: 300px; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 .dash_photo_right form input {
+    height: 30px;
     width: 100%;
 }
 .dash_photo_right form button {
+    height: 30px;
     width: 100%;
     margin-top: 6px;
     cursor: pointer;
@@ -99,9 +171,11 @@ html, body, ul {
 .display_img {
     width: 280px;
     height: 260px;
-    border: 1px solid #f00;
+    background-color: #fff;
+    /* border: 1px solid #f00; */
+    border: none;
     margin: auto;
-    /* margin-top: 20px; */
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 #dash_img {
     width: 100%; height: 100%;
@@ -109,9 +183,80 @@ html, body, ul {
 .file {
     display: none;
 }
+.dash_alert {
+    display: none;
+    text-align: center;
+    padding: 5px;
+    margin: 5px 0px 10px 0px;
+    background-color: rgb(248, 165, 165);
+    color: rgb(66, 3, 3);
+}
+#select_image {
+    background-color: rgb(105, 17, 17);
+    border: none; outline: none;
+    color: #fff;
+    letter-spacing: 1px;
+}
+#submit_photo {
+    background-color: rgb(4, 48, 4);
+    color: #fff;
+    border: none; outline: none;
+    letter-spacing: 1px;
+}
 /* Add photo ends */
+
+/* All Gallery Starts */
+#dashboard_gallery {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid #0f0; */
+    flex-wrap: wrap;
+    overflow: auto;
+    /* padding-bottom: 800px; */
+}
+#single_image {
+    width: 260px; height: 260px;
+    margin: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+#photo_image {
+    width: 100%; height: 100%; 
+}
+#no_photo {
+    border: 1px solid #f00;
+}
+#loadmore {
+    border: 1px solid #f00;
+    width: 60px; height: 30px;
+    display: block
+}
+/* All Gallery Ends */
 @media (max-width: 540px) {
     .dashboard_frame {
         width: 90%;
+    }
+}
+
+@media (max-width: 967px) {
+    .dash_navigations {
+        display: none;
+    }
+    .dash_photo {
+        display: block;
+        margin-left: 12%;
+    }
+    .dash_photo_left {
+        width: 100%;
+        height: 300px;
+        display: block;
+    }
+    .dash_photo_right {
+        width: 100%;
+        display: block;
+    }
+    #dashboard_gallery {
+        margin-left: 12%;
     }
 }

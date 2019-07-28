@@ -16,6 +16,14 @@ BaseRepository.prototype.getAdmin = function(data, callback) {
     this.model.findOne({username: data}, callback);
 }
 
+BaseRepository.prototype.getAllPhotos = function(data, callback) {
+    this.model.find({}, callback).sort({date: 'descending'});
+}
+
+BaseRepository.prototype.loadmore = function(data, callback) {
+    this.model.find({}, callback).sort({date: 'descending'}).skip(5).limit(5);
+}
+
 module.exports = (model) => {
     return new BaseRepository(model);
 }

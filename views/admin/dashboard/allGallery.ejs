@@ -1,3 +1,51 @@
-<div class="main_dash_content">
-    All Gallery
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>All Photos | Dashboard</title>
+</head>
+<body>
+    <div id="dashboard_gallery">
+
+    </div>
+    <button>Load more</button>&nbsp; <button>visit our instagram page</button>
+    <script>
+        window.onload = function() {
+            var mainDiv = document.getElementById('dashboard_gallery');
+            var photos;
+            fetch('/admin/gallery/allphotos', {
+                method: 'GET',
+                'Accept': 'application/json'
+            }).then(res => res.json())
+            .then(data => {
+                if(data.code == 200) {
+                    for(let i=0; i<data.message.length; i++) {
+                        const div = document.createElement('div');
+                        const img = document.createElement('img');
+                        const a = document.createElement('a');
+                        div.id = 'single_image';
+                        img.id = 'photo_image';
+                        div.appendChild(a);
+                        a.setAttribute('href', data.message[i].instagramLink);
+                        a.setAttribute('target', '_blank');
+                        img.setAttribute('src', data.message[i].photo);
+                        a.appendChild(img);
+                        mainDiv.appendChild(div)
+                    }
+                } else {
+                    const div2 = document.createElement('div');
+                    div.id = 'no_photo'
+                    div2.innerHTML = data.message;
+                    mainDiv.appendChild(div2);
+                }
+                // const loadMore = document.createElement('button');
+                // loadMore.id = 'loadmore'
+                // loadMore.appendChild(document.createTextNode('load more'));
+            })
+            .catch(err => console.log(err));
+        }    
+    </script>
+</body>
+</html>
