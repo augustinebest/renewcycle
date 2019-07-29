@@ -159,7 +159,12 @@ h6 {
   line-height: 1;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+}
+
+#header #logo h1 a {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 #header #logo h1 a,
