@@ -20,8 +20,8 @@ BaseRepository.prototype.getAllPhotos = function(data, callback) {
     this.model.find({}, callback).sort({date: 'descending'});
 }
 
-BaseRepository.prototype.loadmore = function(data, callback) {
-    this.model.find({}, callback).sort({date: 'descending'}).skip(5).limit(5);
+BaseRepository.prototype.getAll = function(data, callback) {
+    this.model.find({}, callback);
 }
 
 module.exports = (model) => {

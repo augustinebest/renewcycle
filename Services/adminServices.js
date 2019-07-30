@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const galleryRepository = require('../Repositories/galleryRepository');
 const adminRepository = require('../Repositories/adminRepository');
+const newsletterRepository = require('../Repositories/newsletterRepository');
 const bcrypt = require('bcryptjs');
 
 exports.register = (req, res, errors, data) => {
@@ -60,10 +61,10 @@ exports.getAllPhotos = (req, res) => {
     })
 }
 
-exports.loadmore = (req, res) => {
-    galleryRepository.loadmore({}, (err, result) => {
+exports.getSubscribers = (req, res) => {
+    newsletterRepository.getAll({}, (err, result) => {
         if(err) res.json({message: 'Error ocurred in getting all photos', code: 13});
-        if(!result) {
+        if(result.length < 0) {
             return res.json({message: 'There is no photo currently available', code: 14})
         }
         return res.json({message: result, code: 200});

@@ -93,11 +93,18 @@ exports.getAllPhotos = (req, res) => {
     }
 }
 
-exports.loadmore = (req, res) => {
+exports.getSubscribers = (req, res) => {
     try {
-        service.loadmore(req, res);
-        // console.log('You want to load more')
+        service.getSubscribers(req, res);
     } catch(error) {
-        return res.json({message: error, code: 11})
+        console.log(error)
+    }
+}
+
+exports.notifySubscribers = (req, res) => {
+    try {
+
+    } catch(error) {
+        console.log(error)
     }
 }

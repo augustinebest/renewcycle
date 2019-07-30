@@ -63,16 +63,6 @@ app.use('/s', subscribe);
 app.use('/gallery', gallery);
 app.use('/admin', admin);
 
-// app.use(app.router);
-
-// Since this is the last non-error-handling
-// middleware use()d, we assume 404, as nothing else
-// responded.
-
-// $ curl http://localhost:3000/notfound
-// $ curl http://localhost:3000/notfound -H "Accept: application/json"
-// $ curl http://localhost:3000/notfound -H "Accept: text/plain"
-
 app.use(function(req, res, next){
   res.status(404);
 
